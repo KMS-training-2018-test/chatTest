@@ -16,4 +16,12 @@
 		<servlet-name>MainPageServlet</servlet-name>
 		<url-pattern>/main</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>MakeGroupServlet</servlet-name>
+		<servlet-class>servlet.MakeGroupServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MakeGroupServlet</servlet-name>
+		<url-pattern>/makeGroup</url-pattern>
+	</servlet-mapping>
 </web-app>

@@ -9,13 +9,14 @@
 <body>
 <h1>チャット研修プログラム</h1>
 <h2>ログイン</h2>
-<form action="/servlet/login" method="POST">
+<form action="/chatTest/login" method="POST">
 <p>会員ID</p>
 <input type="text" name="userId" value="${loginBean.userId}">
 <p>パスワード</p>
-<input type="text" name="userId" value="${loginBean.password}">
+<input type="text" name="password" value="${loginBean.password}">
 <br>
 <P>${loginBean.errorMessage}</P>
+<input type="submit" value="ログイン">
 </form>
 </body>
 </html>

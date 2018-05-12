@@ -24,6 +24,8 @@ public class LoginServlet extends HttpServlet {
 		// Beanの初期化
 		LoginBean bean = new LoginBean();
 		bean.setErrorMessage("");
+		bean.setUserId("");
+		bean.setPassword("aaa");
 
 		req.setAttribute("loginBean", bean);
 		req.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(req, res);
@@ -36,8 +38,8 @@ public class LoginServlet extends HttpServlet {
 		String direction = "/WEB-IN/jsp/login.jsp";
 
 		// パラメータの取得
-		String userId = (String)req.getAttribute("userId");
-		String password = (String)req.getAttribute("password");
+		String userId = (String)req.getParameter("userId");
+		String password = (String)req.getParameter("password");
 
 		// 入力チェック
 		bean.setUserId(userId);
