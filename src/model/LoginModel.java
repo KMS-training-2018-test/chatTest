@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import bean.LoginBean;
-import dao.DataAccess;
 
 /**
  * ログイン画面ビジネスロジック
@@ -36,7 +35,6 @@ public class LoginModel {
 
 	public LoginBean authentication(LoginBean bean) throws Exception {
 		// 初期化
-		DataAccess dataAccess = new DataAccess();
 		StringBuilder sb = new StringBuilder();
 		String userId = bean.getUserId();
 		String password = bean.getPassword();
@@ -52,7 +50,7 @@ public class LoginModel {
 
 		// SQL作成
 		sb.append("SELECT ");
-		sb.append(" user_id ");
+		sb.append(" user_no ");
 		sb.append(" ,user_name ");
 		sb.append("FROM ");
 		sb.append(" m_user ");
@@ -68,7 +66,7 @@ public class LoginModel {
 		if (!rs.next()) {
 			bean.setErrorMessage("パスワードが一致しませんでした。");
 		} else {
-			bean.setUserNo(rs.getString("user_id"));
+			bean.setUserNo(rs.getString("user_no"));
 			bean.setUserName(rs.getString("user_name"));
 			conn.close();
 		}
