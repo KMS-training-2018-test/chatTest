@@ -1,6 +1,10 @@
 package model;
 
+
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import bean.LoginBean;
 import dao.DataAccess;
@@ -37,22 +41,36 @@ public class LoginModel {
 		String userId = bean.getUserId();
 		String password = bean.getPassword();
 
+		Connection conn = null;
+		String url = "jdbc:oracle:thin:@192.168.51.67:1521:XE";
+		String user = "SYSTEM";
+		String dbPassword = "kmskms";
+		// JDBCドライバーのロード
+		Class.forName("oracle.jdbc.driver.OracleDriver");
+		// 接続作成
+		conn = DriverManager.getConnection(url, user, dbPassword);
+
 		// SQL作成
 		sb.append("SELECT ");
-		sb.append(" user_no ");
+		sb.append(" user_id ");
 		sb.append(" ,user_name ");
 		sb.append("FROM ");
 		sb.append(" m_user ");
 		sb.append("WHERE ");
 		sb.append(" user_id = '" + userId + "' " );
-		sb.append(" AND password = '" + password + "' ");
+		sb.append(" AND password = '" + password + "'");
 
-		ResultSet rs = dataAccess.selectData(sb.toString());
+		// SQL実行
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(sb.toString());
+
+//		ResultSet rs = dataAccess.selectData(sb.toString());
 		if (!rs.next()) {
 			bean.setErrorMessage("パスワードが一致しませんでした。");
 		} else {
-			bean.setUserNo(rs.getString("user_no"));
+			bean.setUserNo(rs.getString("user_id"));
 			bean.setUserName(rs.getString("user_name"));
+			conn.close();
 		}
 
 		return bean;

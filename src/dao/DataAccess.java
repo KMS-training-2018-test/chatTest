@@ -11,9 +11,9 @@ import java.sql.Statement;
  */
 public class DataAccess {
 	Connection conn = null;
-	String url = "192.168.51.67";
-	String user = "";
-	String password = "";
+	String url = "jdbc:oracle:thin:@192.168.51.67:1521:XE";
+	String user = "SYSTEM";
+	String password = "kmskms";
 
 	/**
 	 * select文用メソッド

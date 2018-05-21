@@ -12,7 +12,7 @@ import bean.SessionBean;
 
 public class MainPageServlet extends HttpServlet {
 
-	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// セッション情報取得
 		HttpSession session = req.getSession();
 		SessionBean sessionBean = (SessionBean)session.getAttribute("session");
